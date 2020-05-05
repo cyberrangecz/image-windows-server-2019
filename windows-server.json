@@ -24,6 +24,7 @@
             "communicator": "winrm",
             "winrm_username": "vagrant",
             "winrm_password": "vagrant",
+            "winrm_timeout": "{{user `winrm_timeout`}}",
             "type": "qemu",
             "vm_name": "{{user `vm_name`}}",
             "vnc_bind_address": "{{user `vnc_bind_address`}}",
