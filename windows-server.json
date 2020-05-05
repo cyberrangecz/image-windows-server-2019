@@ -3,7 +3,7 @@
     "__comment": "qemu at MacOS doesn't come with SDL support, use_default_display must be set to true",
     "builders": [
         {
-
+            "accelerator": "kvm",
             "boot_wait": "{{user `boot_wait`}}",
             "disk_size": "{{ user `disk_size` }}",
             "format": "raw",
