@@ -22,5 +22,4 @@ There is one admin user account:
 
 ## Known issues and requested features
 
-* Provisioning and configuration will be redone.
 * See [issues](https://gitlab.ics.muni.cz/CSIRT-MU/DEVOPS/windows-server-2019-amd64/-/issues).

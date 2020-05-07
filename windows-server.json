@@ -73,48 +73,8 @@
     ],
     "provisioners": [
     {
-      "type": "chef-solo",
-      "cookbook_paths": ["scripts/cookbooks"],
-      "guest_os_type": "windows",
-      "run_list": [
-        "packer::disable_uac",
-        "packer::disable_restore",
-        "packer::disable_windows_update",
-        "packer::remove_defender",
-        "packer::configure_power",
-        "packer::disable_screensaver"
-      ]
-    },
-    {
-      "type": "windows-restart"
-    },
-    {
-      "type": "chef-solo",
-      "cookbook_paths": ["scripts/cookbooks"],
-      "guest_os_type": "windows",
-      "run_list": [
-        "packer::guest_additions",
-        "packer::features",
-        "packer::enable_file_sharing",
-        "packer::enable_remote_desktop",
-        "packer::ui_tweaks"
-      ]
-    },
-    {
-      "type": "windows-restart"
-    },
-    {
-      "type": "chef-solo",
-      "cookbook_paths": ["scripts/cookbooks"],
-      "guest_os_type": "windows",
-      "run_list": [
-        "packer::cleanup",
-        "packer::defrag"
-      ]
-    },
-    {
       "type": "powershell",
-      "script": "scripts/cleanup.ps1",
+      "script": "scripts/configureRemotingForAnsible.ps1",
       "elevated_user": "vagrant",
       "elevated_password": "vagrant"
     }
