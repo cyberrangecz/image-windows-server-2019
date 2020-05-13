@@ -65,19 +65,23 @@
             "hard_drive_interface": "sata",
             "iso_interface": "sata",
             "guest_additions_mode": "attach",
-            "guest_additions_path": "C:/users/vagrant/VBoxGuestAdditions.iso",
             "floppy_files": [
                 "Autounattend.xml"
             ]
     	}
     ],
     "provisioners": [
-    {
-      "type": "powershell",
-      "script": "scripts/configureRemotingForAnsible.ps1",
-      "elevated_user": "vagrant",
-      "elevated_password": "vagrant"
-    }
+       {
+            "type": "powershell",
+            "script": "scripts/configureRemotingForAnsible.ps1",
+            "elevated_user": "vagrant",
+            "elevated_password": "vagrant"
+       },
+       {
+            "type": "windows-shell",
+            "script": "scripts/guestAdditions.bat",
+            "only": ["windows-server-vbox"]
+       }
     ],
     "post-processors": [
        {
