@@ -290,6 +290,22 @@
               <Order>20</Order>
               <RequiresUserInput>true</RequiresUserInput>
           </SynchronousCommand>
+          <SynchronousCommand wcm:action="add">
+              <CommandLine>cmd.exe /c %SystemRoot%\System32\reg.exe ADD HKLM\Software\Microsoft\Windows\CurrentVersion\policies\system\ /v EnableLUA /t REG_DWORD /d 0 /f</CommandLine>
+              <Order>21</Order>
+              <Description>Disable UAC</Description>
+          </SynchronousCommand>
+          <SynchronousCommand wcm:action="add">
+              <CommandLine>cmd.exe /c a:\microsoft-updates.bat</CommandLine>
+              <Order>98</Order>
+              <Description>Enable Microsoft Updates</Description>
+          </SynchronousCommand>
+          <SynchronousCommand wcm:action="add">
+              <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Noninteractive -ExecutionPolicy Bypass -Noprofile -File a:\win-updates.ps1</CommandLine>
+              <Description>Install Windows Updates</Description>
+              <Order>100</Order>
+              <RequiresUserInput>true</RequiresUserInput>
+          </SynchronousCommand>
       </FirstLogonCommands>
     </component>
   </settings>
