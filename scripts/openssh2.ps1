@@ -1,3 +1,6 @@
+# Enable UAC
+New-ItemProperty -Path HKLM:Software\Microsoft\Windows\CurrentVersion\policies\system -Name EnableLUA -PropertyType DWord -Value 1 -Force
+
 # Create folder location
 New-Item -Path c:\ -Name temp -ItemType Directory
 # Download openssh
@@ -20,16 +23,13 @@ Start-Service sshd
 -replace 'Match Group administrators','#Match Group administrators' `
 -replace 'AuthorizedKeysFile __PROGRAMDATA__/ssh/administrators_authorized_keys','#AuthorizedKeysFile __PROGRAMDATA__/ssh/administrators_authorized_keys') | Set-Content -Path C:\ProgramData\ssh\sshd_config
 
-# Set Powershell as default line
-New-ItemProperty -Path "HKLM:\SOFTWARE\OpenSSH" -Name DefaultShell -Value "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -PropertyType String -Force
-
 # Restart after changes
 Restart-Service sshd
 
-<#
+
 # force file creation
 New-item -Path $env:USERPROFILE -Name .ssh -ItemType Directory -force
 
 # Copy key
-Write-Output "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpFkwlOKVUVO99xD9NwptycMLHYwm6DEfAxtI7AzNcJhyZ8ME88+viwDK6FE5t9p0X6bCxC7zkxfVGeabrIjEK+mQgIY5vuW7diuCwztdeTyqqOcotCx9SyNOJwotqaVGEEbjkzAXQNWHivkoyBnTB0nMg5rCfXD9zYUsT6OBI9SU7GG1c0skYkNUJpPqo+mwUIU1ZPa8cZBOfg/SprSxTS+lKzU6567ZDkcGjK3dRycKXDYauci5M/7MiCZijzJtGQDjMa0iXCgUZt0ypiUax/bw0JmUN9sC1a+/H40SpVtkUbQzmziFfv7Wg34WxFUyA9wupLf/I0K3oWnQahZ19 ucn\143208@kotlik-pc" | Out-File $env:USERPROFILE\.ssh\authorized_keys -Encoding ascii
-#>
+Write-Output "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDNANQ4GnFqkwZ7YPuOkqcgRSaXkNdHQge4lgXUU1eaDn3GISQFK/hjxdX73PyQwSo/mEm0y3JKxo6/GredC8X6n1pSQ+61VGBg1bRzn8oiREZYZ4568mzgRVn8O70XPTZUzctI4FvgmwUi1oIXvXize0lXSMOXuKogXuwAjiqMQb1c+NnXdXJ7wpITg8Bdvl8Th+aYB8Utb3vAf5yGDHViq+cjXaHrvuTqpwV7s+3wwYOJxc0jckqqWiV2/yhqV5Wy5zYyJu+r9gvY9jXRKe1UTFdNaznGPCF3rfqqo+mVA1dY5gFsV7sFtpoq5YbGgm8vNrb025172kANXp6KDoq/hTnRN5Ph1liYmpwn9UkckK6ddMPmz3w4uWDy4ow8/bR+1nwuf/uW8tdy9cKgIBMtYcpxEJXpEBVYKb2+8X3NY809ar0p0xwrMqPwmizNz5z4cq2SkJPvT9frBoW6/itTiZtxeOeiI9qXPHQ4ZK3yfGx2veBYL0uLrDxvZErCfs8= build-key" | Out-File $env:USERPROFILE\.ssh\authorized_keys -Encoding ascii
+

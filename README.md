@@ -6,6 +6,8 @@ This repo contains Packer files for building Windows Server 2019 Standard Deskto
 
 General requirement and instructions how to create and import created images to OpenStack/Vagrant are available in [wiki](https://gitlab.ics.muni.cz/CSIRT-MU/DEVOPS/devops-group/-/wikis/image-packer).
 
+SSH and WinRM is enabled, SSH login using password is disabled. `ssh-key.pub` is inserted for the `vagrant` user.
+
 ## Image for QEMU/OpenStack
 
 For building this image for QEMU, additional [iso image with Windows drivers for QEMU](https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso) must be downloaded. Use this command to download it: `wget -nv -nc https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso -O virtio-win.iso`.
