@@ -98,7 +98,10 @@
        },
        {
             "type": "powershell",
-            "script": "scripts/spiceTools.ps1",
+            "scripts": [
+                "scripts/spiceTools.ps1", 
+                "scripts/Install-CloudBaseInit.ps1"
+            ],
             "only": ["windows-server-qemu"]
        },
        {
