@@ -32,7 +32,7 @@
                 "redhat.cer",
                 "scripts/microsoft-updates.bat",
                 "scripts/win-updates.ps1",
-                "scripts/openssh2.ps1"
+                "scripts/openssh.ps1"
             ]
         },
         {
@@ -71,7 +71,7 @@
                 "Autounattend.xml",
                 "scripts/microsoft-updates.bat",
                 "scripts/win-updates.ps1",
-                "scripts/openssh2.ps1"
+                "scripts/openssh.ps1"
             ]
     	}
     ],
@@ -128,7 +128,7 @@
         "memory_size": "4096",
         "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
         "ssh_username": "vagrant",
-        "ssh_private_key_file": "ssh-key",
+        "ssh_private_key_file": "vagrant-key",
         "ssh_wait_timeout": "3h",
         "vm_name": "windows-server",
         "vnc_bind_address": "0.0.0.0",
