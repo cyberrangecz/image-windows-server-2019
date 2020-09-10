@@ -106,7 +106,7 @@
        },
        {
             "type": "powershell",
-            "script": "scripts/openssh-fix.ps1"
+            "script": "scripts/fixes.ps1"
        }
     ],
     "post-processors": [
@@ -127,7 +127,7 @@
         "iso_url": "https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso",
         "memory_size": "4096",
         "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-        "ssh_username": "vagrant",
+        "ssh_username": "windows",
         "ssh_private_key_file": "vagrant-key",
         "ssh_wait_timeout": "3h",
         "vm_name": "windows-server",

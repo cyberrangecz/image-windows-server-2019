@@ -114,7 +114,7 @@
                     <WillShowUI>OnError</WillShowUI>
                 </ProductKey>
                 <AcceptEula>true</AcceptEula>
-                <FullName>Vagrant</FullName>
+                <FullName>Windows</FullName>
                 <Organization>Organization</Organization>
             </UserData>
         </component>
@@ -149,20 +149,16 @@
             </OOBE>
       <TimeZone>UTC</TimeZone>
       <UserAccounts>
-        <AdministratorPassword>
-          <Value>vagrant</Value>
-          <PlainText>true</PlainText>
-        </AdministratorPassword>
         <LocalAccounts>
           <LocalAccount wcm:action="add">
             <Password>
               <Value>vagrant</Value>
               <PlainText>true</PlainText>
             </Password>
-            <Description>Vagrant User</Description>
-            <DisplayName>vagrant</DisplayName>
+            <Description>Windows User</Description>
+            <DisplayName>windows</DisplayName>
             <Group>administrators</Group>
-            <Name>vagrant</Name>
+            <Name>windows</Name>
           </LocalAccount>
         </LocalAccounts>
       </UserAccounts>
@@ -171,7 +167,7 @@
                     <Value>vagrant</Value>
                     <PlainText>true</PlainText>
                 </Password>
-                <Username>vagrant</Username>
+                <Username>windows</Username>
                 <Enabled>true</Enabled>
             </AutoLogon>
       <FirstLogonCommands>
@@ -264,9 +260,9 @@
               <Description>Enable QuickEdit mode</Description>
           </SynchronousCommand>
           <SynchronousCommand wcm:action="add">
-              <CommandLine>cmd.exe /c wmic useraccount where "name='vagrant'" set PasswordExpires=FALSE</CommandLine>
+              <CommandLine>cmd.exe /c wmic useraccount where "name='windows'" set PasswordExpires=FALSE</CommandLine>
               <Order>16</Order>
-              <Description>Disable password expiration for vagrant user</Description>
+              <Description>Disable password expiration for windows user</Description>
           </SynchronousCommand>
           <SynchronousCommand wcm:action="add">
               <CommandLine>%SystemRoot%\System32\reg.exe ADD HKLM\SYSTEM\CurrentControlSet\Control\Power\ /v HibernateFileSizePercent /t REG_DWORD /d 0 /f</CommandLine>

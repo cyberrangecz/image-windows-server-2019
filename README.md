@@ -6,7 +6,7 @@ This repo contains Packer files for building Windows Server 2019 Standard Deskto
 
 General requirement and instructions how to create and import created images to OpenStack/Vagrant are available in [wiki](https://gitlab.ics.muni.cz/muni-kypo-images/muni-kypo-images-wiki/-/wikis/image-packer).
 
-SSH and WinRM is enabled, SSH login using password is disabled. `ssh-key.pub` is inserted for the `vagrant` user.
+SSH and WinRM is enabled, SSH login using password is disabled.
 
 ## Image for QEMU/OpenStack
 
@@ -14,13 +14,15 @@ For building this image for QEMU, additional [iso image with Windows drivers for
 
 There is one admin user account:
 
-*  `vagrant` with password `vagrant` 
+*  `windows` with password `vagrant`, but password is set to random upon startup by [cloudbase-init](https://cloudbase-init.readthedocs.io/en/latest/intro.html) when no password is provided via metadata
 
 ## Image for VirtualBox/Vagrant
 
 There is one admin user account:
 
-*  `vagrant` with password `vagrant` 
+*  `windows` with password `vagrant` 
+
+If Ansible fails to connect, add `"ansible_winrm_scheme" => "http"` to `ansible.extra_vars` in Vagrantfile.
 
 ## Known issues and requested features
 
