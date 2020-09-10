@@ -34,6 +34,7 @@ build-qemu:
       - target-qemu/*
   when: manual
   allow_failure: false
+  timeout: 4h
   resource_group: virtual-machine
   needs: ["validate"]
 
@@ -46,6 +47,7 @@ build-vbox:
       - target-vbox/*
   when: manual
   allow_failure: false
+  timeout: 4h
   resource_group: virtual-machine
   needs: ["validate"]
 
