@@ -1,15 +1,9 @@
-image: registry.gitlab.ics.muni.cz:443/muni-kypo-images/kali-2019.4/packer
+image: nexus.csirt.muni.cz:5000/csirtmu/packer:latest
 
 variables:
   CI_OS_NAME: "windows-server"
   CI_OS_TYPE: "windows"
   CI_OS_DISTRO: "windows"
-  CI_CLOUD_USER: "windows"
-  OS_AUTH_TYPE: "v3applicationcredential"
-  OS_AUTH_URL: "https://identity.cloud.muni.cz/v3"
-  OS_IDENTITY_API_VERSION: "3"
-  OS_INTERFACE: "public"
-  OS_REGION_NAME: "brno1"
 
 stages:
   - validate
@@ -32,6 +26,9 @@ build-qemu:
   artifacts:
     paths:
       - target-qemu/*
+  cache:
+    paths:
+      - packer_cache
   when: manual
   allow_failure: false
   timeout: 4h
@@ -81,11 +78,26 @@ deploy-qemu:
     - openstack image create --file target-qemu/* --property hw_scsi_model=virtio-scsi --property hw_disk_bus=scsi --property hw_rng_model=virtio --property hw_qemu_guest_agent=yes --property os_require_quiesce=yes --property os_type=$CI_OS_TYPE --property os_distro=$CI_OS_DISTRO $CI_PROJECT_NAME-$CI_TAG
   when: manual
   needs: ["build-qemu", "test-qemu"]
+  variables:
+    OS_AUTH_TYPE: "v3applicationcredential"
+    OS_AUTH_URL: "https://identity.cloud.muni.cz/v3"
+    OS_IDENTITY_API_VERSION: "3"
+    OS_INTERFACE: "public"
+    OS_REGION_NAME: "brno1"
 
 deploy-vbox:
   stage: deploy
   script:
     - test ! -z "$CI_TAG"
-    - echo TBD
+    - curl --header "Content-Type:application/json" --header "Authorization:Bearer $VAGRANT_CLOUD_TOKEN" https://app.vagrantup.com/api/v1/box/$VAGRANT_CLOUD_USER/$CI_PROJECT_NAME/versions --data "{\"version\":{\"version\":\"$CI_TAG\",\"description\":\"$DESCRIPTION\"}}"
+    - curl --header "Content-Type:application/json" --header "Authorization:Bearer $VAGRANT_CLOUD_TOKEN" https://app.vagrantup.com/api/v1/box/$VAGRANT_CLOUD_USER/$CI_PROJECT_NAME/version/$CI_TAG/providers  --data "{\"provider\":{\"checksum\":\"`sha1sum target-vbox/* | awk '{print $1}'`\",\"checksum_type\":\"sha1\",\"name\":\"virtualbox\"}}"
+    - UPLOAD_PATH=$(curl --header "Authorization:Bearer $VAGRANT_CLOUD_TOKEN" https://app.vagrantup.com/api/v1/box/$VAGRANT_CLOUD_USER/$CI_PROJECT_NAME/version/$CI_TAG/provider/virtualbox/upload | jq -r .upload_path)
+    - curl $UPLOAD_PATH --request PUT --upload-file target-vbox/*
+#    - curl --header "Authorization:Bearer $VAGRANT_CLOUD_TOKEN" https://app.vagrantup.com/api/v1/box/$VAGRANT_CLOUD_USER/$CI_PROJECT_NAME/version/$CI_TAG/release --request PUT
   when: manual
   needs: ["build-vbox", "test-vbox"]
+#  only:
+#    - master
+  variables:
+    VAGRANT_CLOUD_USER: "munikypo"
+    DESCRIPTION: "placeholder"
