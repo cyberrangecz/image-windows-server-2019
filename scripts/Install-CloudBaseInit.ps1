@@ -16,6 +16,6 @@ Add-Content "C:\Program Files\Cloudbase Solutions\Cloudbase-Init\conf\cloudbase-
 
 # Sysprep
 cd "C:\Program Files\Cloudbase Solutions\Cloudbase-Init\conf"
-Start-Process -FilePath "C:\Windows\System32\sysprep\sysprep.exe" -ArgumentList '/generalize /oobe /unattend:Unattend.xml /reboot'
+Start-Process -FilePath "C:\Windows\System32\sysprep\sysprep.exe" -ArgumentList '/generalize /oobe /unattend:Unattend.xml /quit'
 
 Write-Host "Cloudbase-Init setup done!"
