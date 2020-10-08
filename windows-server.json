@@ -11,7 +11,7 @@
             "headless": "{{user `headless`}}",
             "iso_checksum": "{{user `iso_checksum`}}",
             "iso_url": "{{user `iso_url`}}",
-            "name": "windows-server-qemu",
+            "name": "qemu",
             "output_directory": "target-qemu",
             "qemuargs": [
                 ["-m", "{{ user `memory_size` }}m"],
@@ -41,7 +41,7 @@
             "headless": "{{user `headless`}}",
             "iso_checksum": "{{user `iso_checksum`}}",
             "iso_url": "{{user `iso_url`}}",
-            "name": "windows-server-vbox",
+            "name": "vbox",
             "vboxmanage": [
                 [
                     "modifyvm",
@@ -86,13 +86,13 @@
        {
             "type": "windows-shell",
             "script": "scripts/guestAdditions.bat",
-            "only": ["windows-server-vbox"]
+            "only": ["vbox"]
        },
        {
             "type": "file",
             "source": "scripts/spice-guest-tools.exe",
             "destination": "C:/Windows/Temp/",
-            "only": ["windows-server-qemu"]
+            "only": ["qemu"]
        },
        {
             "type": "powershell",
@@ -100,7 +100,7 @@
                 "scripts/spiceTools.ps1", 
                 "scripts/Install-CloudBaseInit.ps1"
             ],
-            "only": ["windows-server-qemu"]
+            "only": ["qemu"]
        },
        {
             "type": "powershell",
@@ -112,7 +112,7 @@
   	    "type": "vagrant",
   	    "output" : "target-vbox/windows-server.box",
             "vagrantfile_template": "Vagrantfile-template",
-  	    "only": ["windows-server-vbox"]
+  	    "only": ["vbox"]
        }
     ],
     "variables": {

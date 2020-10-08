@@ -1,4 +1,4 @@
-image: nexus.csirt.muni.cz:5000/csirtmu/packer:latest
+image: registry.gitlab.ics.muni.cz:443/muni-kypo-images/ci-cd-virtual-images/packer:50ebcae8
 
 variables:
   CI_OS_NAME: "windows-server"
@@ -22,7 +22,7 @@ build-qemu:
   stage: build
   script:
     - wget -nv -nc https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso -O virtio-win.iso
-    - packer build -only=$CI_OS_NAME-qemu $CI_OS_NAME.json
+    - packer build -only=qemu $CI_OS_NAME.json
   artifacts:
     paths:
       - target-qemu/*
@@ -38,10 +38,13 @@ build-qemu:
 build-vbox:
   stage: build
   script:
-    - packer build -only=$CI_OS_NAME-vbox $CI_OS_NAME.json
+    - packer build -only=vbox $CI_OS_NAME.json
   artifacts:
     paths:
       - target-vbox/*
+  cache:
+    paths:
+      - packer_cache
   when: manual
   allow_failure: false
   timeout: 4h
@@ -54,11 +57,11 @@ test-qemu:
     - ssh-keygen -f ./id_rsa -N "" -C mykey -m pem
     - mkdir -p drive/openstack/latest
     - echo "{\"uuid\":\"d8e02d56-2648-49a3-bf97-6be8f1204f38\", \"public_keys\":{\"mykey\":\"`cat id_rsa.pub`\"}}" > drive/openstack/latest/meta_data.json
-    - printf "distinguished_name = req_distinguished_name\n[req_distinguished_name]\n[v3_req_client]\nextendedKeyUsage = clientAuth\nsubjectAltName = otherName:1.3.6.1.4.1.311.20.2.3;UTF8:$CI_CLOUD_USER@localhost\n" > openssl.conf
-    - OPENSSL_CONF=openssl.conf openssl req -x509 -nodes -days 3650 -new -key id_rsa -out drive/openstack/latest/user_data -outform PEM -subj "/CN=$CI_CLOUD_USER" -extensions v3_req_client
+    - printf "distinguished_name = req_distinguished_name\n[req_distinguished_name]\n[v3_req_client]\nextendedKeyUsage = clientAuth\nsubjectAltName = otherName:1.3.6.1.4.1.311.20.2.3;UTF8:$CI_OS_DISTRO@localhost\n" > openssl.conf
+    - OPENSSL_CONF=openssl.conf openssl req -x509 -nodes -days 3650 -new -key id_rsa -out drive/openstack/latest/user_data -outform PEM -subj "/CN=$CI_OS_DISTRO" -extensions v3_req_client
     - mkisofs -R -J -V config-2 -o config.img drive/
     - qemu-system-x86_64 -accel kvm -m size=4096 -net nic -net user,hostfwd=tcp::2222-:22,hostfwd=tcp::55986-:5986 -cdrom config.img target-qemu/* &
-    - printf "winrm ansible_user=$CI_CLOUD_USER ansible_port=55986 ansible_host=127.0.0.1 ansible_connection=winrm ansible_winrm_server_cert_validation=ignore ansible_winrm_cert_pem=drive/openstack/latest/user_data ansible_winrm_cert_key_pem=id_rsa ansible_winrm_transport=certificate\nssh ansible_user=windows ansible_port=2222 ansible_host=127.0.0.1 ansible_connection=ssh ansible_shell_type=powershell" > inventory
+    - printf "winrm ansible_user=$CI_OS_DISTRO ansible_port=55986 ansible_host=127.0.0.1 ansible_connection=winrm ansible_winrm_server_cert_validation=ignore ansible_winrm_cert_pem=drive/openstack/latest/user_data ansible_winrm_cert_key_pem=id_rsa ansible_winrm_transport=certificate\nssh ansible_user=windows ansible_port=2222 ansible_host=127.0.0.1 ansible_connection=ssh ansible_shell_type=powershell" > inventory
     - ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook --private-key id_rsa -i inventory --ssh-extra-args "-o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -o ControlMaster=auto -o ControlPersist=60s" --timeout=30 -v playbook.yml
   resource_group: virtual-machine
   needs: ["build-qemu"]
