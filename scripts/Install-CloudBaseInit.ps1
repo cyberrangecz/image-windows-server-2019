@@ -14,8 +14,4 @@ Start-Process msiexec -ArgumentList '/i "C:\temp\CloudbaseInitSetup_Stable_x64.m
 # Don't require changing password on first logon
 Add-Content "C:\Program Files\Cloudbase Solutions\Cloudbase-Init\conf\cloudbase-init.conf" "first_logon_behaviour=no"
 
-# Sysprep
-cd "C:\Program Files\Cloudbase Solutions\Cloudbase-Init\conf"
-Start-Process -FilePath "C:\Windows\System32\sysprep\sysprep.exe" -ArgumentList '/generalize /oobe /unattend:Unattend.xml /quit'
-
 Write-Host "Cloudbase-Init setup done!"

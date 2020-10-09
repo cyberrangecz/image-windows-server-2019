@@ -104,7 +104,10 @@
        },
        {
             "type": "powershell",
-            "script": "scripts/fixes.ps1"
+            "scripts": [
+                "scripts/fixes.ps1",
+                "scripts/sysprep.ps1"
+            ]
        }
     ],
     "post-processors": [
