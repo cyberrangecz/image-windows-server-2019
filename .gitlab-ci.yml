@@ -1,4 +1,4 @@
-image: registry.gitlab.ics.muni.cz:443/muni-kypo-images/ci-cd-virtual-images/packer:50ebcae8
+image: nexus.csirt.muni.cz:5000/csirtmu/packer:latest
 
 variables:
   CI_OS_NAME: "windows-server"
@@ -65,6 +65,7 @@ test-qemu:
     - ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook --private-key id_rsa -i inventory --ssh-extra-args "-o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -o ControlMaster=auto -o ControlPersist=60s" --timeout=30 -v playbook.yml
   resource_group: virtual-machine
   needs: ["build-qemu"]
+  allow_failure: true
 
 test-vbox:
   stage: test
