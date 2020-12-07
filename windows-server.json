@@ -120,7 +120,7 @@
     "variables": {
         "boot_wait": "5s",
         "cpus": "4",
-        "disk_size": "16384",
+        "disk_size": "20480",
         "headless": "false",
         "iso_checksum": "3022424f777b66a698047ba1c37812026b9714c5",
         "iso_checksum_type": "sha1",
