@@ -133,7 +133,7 @@
         "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
         "ssh_username": "windows",
         "ssh_private_key_file": "vagrant-key",
-        "ssh_wait_timeout": "3h",
+        "ssh_wait_timeout": "5h",
         "vm_name": "windows-server",
         "vnc_vrdp_bind_address": "127.0.0.1",
         "vnc_vrdp_port": "5900",
