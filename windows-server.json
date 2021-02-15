@@ -1,6 +1,4 @@
 {
-    "_comment": "qemu at MacOS doesn't support kvm accelerator, it will use the default accelerator, if no accelerator is defined",
-    "__comment": "qemu at MacOS doesn't come with SDL support, use_default_display must be set to true",
     "builders": [
         {
             "use_default_display": "{{user `headless`}}",
