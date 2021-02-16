@@ -1,8 +1,8 @@
-# Windows-server-2019-amd64
+# Windows-server-2019
 
 ## Introduction
 
-This repo contains Packer files for building Windows Server 2019 Standard Desktop base image for QEMU/OpenStack and for VirtualBox/Vagrant.
+This repo contains Packer files for building Windows Server 2019 amd64 Standard Desktop base image for QEMU/OpenStack and for VirtualBox/Vagrant.
 
 General requirement and instructions how to create and import created images to OpenStack/Vagrant are available in [wiki](https://gitlab.ics.muni.cz/muni-kypo-images/muni-kypo-images-wiki/-/wikis/image-packer).
 
@@ -18,6 +18,8 @@ There is one admin user account:
 
 ## Image for VirtualBox/Vagrant
 
+**Image for VirtualBox/Vagrant is currently broken**
+
 There is one admin user account:
 
 *  `windows` with password `vagrant` 
@@ -26,4 +28,4 @@ If Ansible fails to connect, add `"ansible_winrm_scheme" => "http"` to `ansible.
 
 ## Known issues and requested features
 
-* See [issues](https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019-amd64/-/issues).
+* See [issues](https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/issues).
