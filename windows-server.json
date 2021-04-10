@@ -3,7 +3,7 @@
         {
             "use_default_display": "{{user `headless`}}",
             "boot_wait": "{{user `boot_wait`}}",
-            "disk_size": "{{ user `disk_size` }}",
+            "disk_size": "{{ user `disk_size_qemu` }}",
             "format": "raw",
             "disk_interface": "virtio",
             "headless": "{{user `headless`}}",
@@ -28,14 +28,16 @@
             "floppy_files": [
                 "Autounattend.xml",
                 "redhat.cer",
-                "scripts/microsoft-updates.bat",
+                "scripts/microsoft-updates.ps1",
                 "scripts/win-updates.ps1",
-                "scripts/openssh.ps1"
+                "scripts/openssh.ps1",
+                "scripts/configureRemotingForAnsible.ps1"
+                
             ]
         },
         {
 
-            "disk_size": "{{ user `disk_size` }}",
+            "disk_size": "{{ user `disk_size_vbox` }}",
             "guest_os_type": "Windows2016_64",
             "headless": "{{user `headless`}}",
             "iso_checksum": "{{user `iso_checksum`}}",
@@ -69,7 +71,7 @@
             "vrdp_port_max": "{{user `vnc_vrdp_port`}}",
             "floppy_files": [
                 "Autounattend.xml",
-                "scripts/microsoft-updates.bat",
+                "scripts/microsoft-updates.ps1",
                 "scripts/win-updates.ps1",
                 "scripts/openssh.ps1"
             ]
@@ -107,9 +109,14 @@
        {
             "type": "powershell",
             "scripts": [
-                "scripts/fixes.ps1",
-                "scripts/sysprep.ps1"
+                "scripts/fixes.ps1"
+                
             ]
+       },
+       {
+            "type": "powershell",
+            "script": "scripts/sysprep.ps1",
+            "only": ["qemu"]
        }
     ],
     "post-processors": [
@@ -123,7 +130,8 @@
     "variables": {
         "boot_wait": "5s",
         "cpus": "4",
-        "disk_size": "20480",
+        "disk_size_qemu": "20480",
+        "disk_size_vbox": "51200",
         "headless": "true",
         "iso_checksum": "3022424f777b66a698047ba1c37812026b9714c5",
         "iso_url": "https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso",
