@@ -1,16 +1,12 @@
-# Windows-server-2019
+# Windows Server 2019 Base image
 
-## Introduction
-
-This repo contains Packer files for building Windows Server 2019 amd64 Standard Desktop base image for QEMU/OpenStack and for VirtualBox/Vagrant.
-
-General requirement and instructions how to create and import created images to OpenStack/Vagrant are available in [wiki](https://gitlab.ics.muni.cz/muni-kypo-images/muni-kypo-images-wiki/-/wikis/image-packer).
+This repo contains Packer files for building Windows Server 2019 amd64 Standard Desktop base image for QEMU/OpenStack and for VirtualBox/Vagrant using Gitlab CI/CD.
 
 SSH and WinRM is enabled, SSH login using password is disabled.
 
 ## Image for QEMU/OpenStack
 
-For building this image for QEMU, additional [iso image with Windows drivers for QEMU](https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso) must be downloaded. Use this command to download it: `wget -nv -nc https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso -O virtio-win.iso`.
+For building this image for QEMU locally, additional [iso image with Windows drivers for QEMU](https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso) must be downloaded. Use this command to download it: `wget -nv -nc https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso -O virtio-win.iso`.
 
 There is one admin user account:
 
@@ -29,3 +25,23 @@ If Ansible fails to connect, add `"ansible_winrm_scheme" => "http"` to `ansible.
 ## Known issues and requested features
 
 * See [issues](https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/issues).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgements
+
+<table>
+  <tr>
+    <td>![EU](figures/EU.jpg "EU emblem")</td>
+    <td>
+This software and accompanying documentation is part of a [project](https://cybersec4europe.eu) that has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No. 830929.
+</td>
+  </tr>
+  <tr>
+      <td>![TACR](figures/TACR.png "TACR logo")</td>
+      <td>This software was developed with the support of the Technology Agency of the Czech Republic (TA ČR) from the National Centres of Competence programme (project identification TN01000077 – [National Centre of Competence in Cybersecurity](https://nc3.cz/)). 
+      </td>
+  </tr>
+ </table>
