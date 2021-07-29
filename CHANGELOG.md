@@ -1,5 +1,8 @@
 # Changelog
 
+## [vbox-0.2.0] - 2021-07-29
+### Changed
+- Allowed basic auth and http listener for winrm
 
 ## [vbox-0.1.0] - 2021-04-13
 ### Changed
@@ -29,3 +32,4 @@
 [qemu-0.2.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/qemu-0.2.0
 [qemu-0.3.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/qemu-0.3.0
 [vbox-0.1.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/vbox-0.1.0
+[vbox-0.2.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/vbox-0.2.0
