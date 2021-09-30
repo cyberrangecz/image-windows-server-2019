@@ -1,5 +1,9 @@
 # Changelog
 
+## [vbox-0.3.0], [qemu-0.4.0] - 2021-09-30
+### Changed
+- Set NTP server to ntp1.muni.cz
+
 ## [vbox-0.2.0] - 2021-07-29
 ### Changed
 - Allowed basic auth and http listener for winrm
