@@ -1,5 +1,9 @@
 # Changelog
 
+## [qemu-0.4.1] - 2022-10-11
+### Changed
+- No changes, new build to install more windows updates
+
 ## [vbox-0.3.0], [qemu-0.4.0] - 2021-09-30
 ### Changed
 - Set NTP server to ntp1.muni.cz
@@ -35,5 +39,8 @@
 [qemu-0.1.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/eb4a46ac34d2013967e73b3d7193c1624b6698a4
 [qemu-0.2.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/qemu-0.2.0
 [qemu-0.3.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/qemu-0.3.0
+[qemu-0.4.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/qemu-0.4.0
+[qemu-0.4.1]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/qemu-0.4.1
 [vbox-0.1.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/vbox-0.1.0
 [vbox-0.2.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/vbox-0.2.0
+[vbox-0.3.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/vbox-0.3.0
