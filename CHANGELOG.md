@@ -1,5 +1,11 @@
 # Changelog
 
+## [qemu-0.4.2] - 2023-02-23
+### Changed
+- Use newer Windows ISO
+- Use newer cloudbase-init 1.1.4
+- Enables disk performance counters [(Issue #3)](https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/issues/3)
+
 ## [qemu-0.4.1] - 2022-10-11
 ### Changed
 - No changes, new build to install more windows updates
@@ -41,6 +47,7 @@
 [qemu-0.3.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/qemu-0.3.0
 [qemu-0.4.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/qemu-0.4.0
 [qemu-0.4.1]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/qemu-0.4.1
+[qemu-0.4.2]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/qemu-0.4.2
 [vbox-0.1.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/vbox-0.1.0
 [vbox-0.2.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/vbox-0.2.0
 [vbox-0.3.0]: https://gitlab.ics.muni.cz/muni-kypo-images/windows-server-2019/-/tree/vbox-0.3.0
