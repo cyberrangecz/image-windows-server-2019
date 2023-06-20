@@ -32,7 +32,6 @@
                 "scripts/win-updates.ps1",
                 "scripts/openssh.ps1",
                 "scripts/configureRemotingForAnsible.ps1"
-                
             ]
         },
         {
@@ -116,8 +115,8 @@
        {
             "type": "powershell",
             "scripts": [
-                "scripts/fixes.ps1"
-                
+                "scripts/fixes.ps1",
+                "scripts/cleanup.ps1"
             ]
        },
        {
