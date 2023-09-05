@@ -7,3 +7,9 @@ variables:
   NAME: "windows-server"
   TYPE: "windows"
   DISTRO: "windows"
+
+build-qemu:
+  before_script:
+    - if [ ! -f virtio-win.iso ]; then
+    -  wget -nv https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso -O virtio-win.iso
+    - fi
