@@ -139,7 +139,7 @@
        {
         "type": "shell-local",
         "inline": [
-          "ACTUAL_SIZE=$(qemu-img info --output json target-qemu/* | jq '.'\"actual-size\"')",
+          "ACTUAL_SIZE=$(qemu-img info --output json target-qemu/* | jq '.\"actual-size\"')",
           "NEW_SIZE=$((ACTUAL_SIZE+2147483648)) # Add 2GB",
           "qemu-img resize -f raw --shrink target-qemu/* $NEW_SIZE"
         ],
