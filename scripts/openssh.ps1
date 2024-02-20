@@ -1,6 +1,3 @@
-# Enable UAC
-New-ItemProperty -Path HKLM:Software\Microsoft\Windows\CurrentVersion\policies\system -Name EnableLUA -PropertyType DWord -Value 1 -Force
-
 # Install OpenSSH
 Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
 
