@@ -116,7 +116,8 @@
             "type": "powershell",
             "scripts": [
                 "scripts/fixes.ps1",
-                "scripts/cleanup.ps1"
+                "scripts/cleanup.ps1",
+                "scripts/shrink-filesystem.ps1"
             ]
        },
        {
@@ -134,12 +135,21 @@
   	    "output" : "target-vbox/windows-server.box",
             "vagrantfile_template": "Vagrantfile-template",
   	    "only": ["vbox"]
+       },
+       {
+        "type": "shell-local",
+        "inline": [
+          "ACTUAL_SIZE=$(qemu-img info --output json target-qemu/* | jq '.\"actual-size\"')",
+          "NEW_SIZE=$((ACTUAL_SIZE+2147483648)) # Add 2GB",
+          "qemu-img resize -f raw --shrink target-qemu/* $NEW_SIZE"
+        ],
+        "only": ["qemu"]
        }
     ],
     "variables": {
         "boot_wait": "5s",
         "cpus": "4",
-        "disk_size_qemu": "20480",
+        "disk_size_qemu": "51200",
         "disk_size_vbox": "51200",
         "headless": "true",
         "iso_checksum": "6dae072e7f78f4ccab74a45341de0d6e2d45c39be25f1f5920a2ab4f51d7bcbb",
