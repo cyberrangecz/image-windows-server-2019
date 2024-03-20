@@ -98,9 +98,6 @@
             "only": ["qemu"]
        },
        {
-            "type": "breakpoint"
-       },
-       {
             "type": "powershell",
             "scripts": [
                 "scripts/spiceTools.ps1",
