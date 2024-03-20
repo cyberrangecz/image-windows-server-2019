@@ -21,3 +21,6 @@ Start-Service w32time
 
 # Enable disk performance counters
 diskperf -y
+
+# Disable hibernation
+powercfg /h off
