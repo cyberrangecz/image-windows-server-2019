@@ -1,6 +1,7 @@
 include:
   - project: muni-kypo-images/ci-cd-virtual-images
     file: qemu.yml
+    ref: update
   - project: muni-kypo-images/ci-cd-virtual-images
     file: vbox.yml
 
@@ -15,30 +16,3 @@ build-qemu:
     - if [ ! -f virtio-win.iso ]; then
     -  wget -nv https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso -O virtio-win.iso
     - fi
-  script:
-    - packer build -only=qemu $NAME.json
-    - gitlab-tofu plan -target=module.topology.openstack_images_image_v2.test_image
-    - gitlab-tofu apply
-  artifacts: null
-  variables:
-    KEY: qemu
-    OS_AUTH_TYPE: v3applicationcredential
-    OS_AUTH_URL: https://identity.cloud.muni.cz/v3
-    OS_IDENTITY_API_VERSION: '3'
-    OS_INTERFACE: public
-    OS_REGION_NAME: brno1
-    TF_ROOT: ${CI_PROJECT_DIR}
-    TF_STATE_NAME: ${CI_COMMIT_REF_SLUG}
-    TF_VAR_CI_SERVER_HOST: ${CI_SERVER_HOST}
-    TF_VAR_CI_COMMIT_SHORT_SHA: ${CI_COMMIT_SHORT_SHA}
-    TF_VAR_NAME: ${NAME}
-    TF_VAR_TYPE: ${TYPE}
-    TF_VAR_DISTRO: ${DISTRO}
-    TF_VAR_GUI_ACCESS: ${GUI_ACCESS}
-    TF_VAR_ACCESS_TOKEN: ${ACCESS_TOKEN}
-
-test-qemu:
-  image: registry.gitlab.com/components/opentofu/gitlab-opentofu:latest-opentofu1.6.2
-  script:
-    - gitlab-tofu plan
-    - gitlab-tofu apply || (gitlab-tofu output ; exit 1)
