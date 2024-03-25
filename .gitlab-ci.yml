@@ -6,7 +6,7 @@ include:
     file: vbox.yml
 
 variables:
-  NAME: "windows-server"
+  NAME: "windows-server-2019"
   TYPE: "windows"
   DISTRO: "windows"
 

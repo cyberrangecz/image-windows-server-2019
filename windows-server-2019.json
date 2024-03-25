@@ -165,7 +165,7 @@
         "ssh_username": "windows",
         "ssh_private_key_file": "vagrant-key",
         "ssh_wait_timeout": "5h",
-        "vm_name": "windows-server",
+        "vm_name": "windows-server-2019",
         "vnc_vrdp_bind_address": "127.0.0.1",
         "vnc_vrdp_port": "5900",
         "virtio_win_iso": "virtio-win.iso"
