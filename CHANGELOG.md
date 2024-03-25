@@ -1,5 +1,11 @@
 # Changelog
 
+## [qemu-0.6.0] - 2024-03-25
+### Changed
+- Windows license is activated by cloudbase-init
+- Hibernation file is disabled
+- Build is run with larger disk, which is then shrunk
+
 ## [qemu-0.5.0] - 2023-06-20
 ### Changed
 - Update .NET to 4.8
