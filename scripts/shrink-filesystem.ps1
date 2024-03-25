@@ -1,14 +1,28 @@
 # Get information about the system drive
-$systemDrive = Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Name -eq 'C' }
+$partition = Get-Partition -DriveLetter 'C'
 
-# Get the used space on the system drive
-$usedSpaceGB = [math]::Round($systemDrive.Used / 1GB, 2)
+# Defrag disk
+defrag C: /L /D /K /G /H
+defrag C: /X /H
 
-# Add 2 GB to the used space
-$updatedSizeGB = $usedSpaceGB + 2
+# Resize the filesystem, keep trying until it succeeds or timeout
+$timeout = 300
+$retryInterval = 15
+$startTime = Get-Date
+while ((Get-Date) -lt $startTime.AddSeconds($timeout)) {
+    $output = @"
+sel disk $($partition.DiskNumber)
+sel part $($partition.PartitionNumber)
+shrink
+"@ | diskpart
+    Write-Host $output
+    if ($output -match "DiskPart successfully shrunk the volume") {
+        break
+    }
+    Write-Host "Retrying in $retryInterval seconds..."
+    Start-Sleep -Seconds $retryInterval
+}
 
-# Convert Variable
-$updatedSizeBytes = $updatedSizeGB * 1GB
-
-# Resize the system partition with the updated size
-Resize-Partition -DriveLetter 'C' -Size $updatedSizeBytes
+if ((Get-Date) -ge $startTime.AddSeconds($timeout)) {
+    Write-Host "Timeout: Shrink is still not successfull after $timeout seconds."
+}
