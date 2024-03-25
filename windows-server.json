@@ -29,7 +29,6 @@
                 "Autounattend.xml",
                 "redhat.cer",
                 "scripts/microsoft-updates.ps1",
-                "scripts/win-updates.ps1",
                 "scripts/openssh.ps1",
                 "scripts/configureRemotingForAnsible.ps1"
             ]
@@ -76,6 +75,9 @@
     	}
     ],
     "provisioners": [
+       {
+            "type": "windows-update"
+       },
        {
             "type": "powershell",
             "scripts": [
