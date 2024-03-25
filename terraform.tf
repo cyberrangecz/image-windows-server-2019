@@ -34,7 +34,7 @@ variable "CI_PROJECT_URL" {}
 variable "CI_COMMIT_SHORT_SHA" {}
 variable "CI_SERVER_HOST" {}
 variable "CI_PROJECT_PATH" {}
-variable "NAME" {}
+variable "CI_PROJECT_NAME" {}
 variable "TYPE" {}
 variable "DISTRO" {}
 variable "GUI_ACCESS" {}
@@ -49,7 +49,7 @@ module "topology" {
   project_access_token = var.ACCESS_TOKEN
   project_id           = var.CI_PROJECT_ID
   rev                  = var.CI_COMMIT_SHORT_SHA
-  image_name           = var.NAME
+  image_name           = var.CI_PROJECT_NAME
   os_type              = var.TYPE
   os_distro            = var.DISTRO
   gui_access           = var.GUI_ACCESS
