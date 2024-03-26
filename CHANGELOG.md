@@ -1,6 +1,6 @@
 # Changelog
 
-## [qemu-0.6.0] - 2024-03-25
+## [qemu-0.6.0] - 2024-03-26
 ### Changed
 - Windows license is activated by cloudbase-init
 - Hibernation file is disabled
