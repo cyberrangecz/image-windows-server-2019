@@ -9,6 +9,4 @@ on:
 jobs:
   test:
     uses: cyberrangecz/ci-images/.github/workflows/test.yml@master
-    with:
-      release_to_s3: false
     secrets: inherit
