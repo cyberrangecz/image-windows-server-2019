@@ -39,7 +39,7 @@ source "qemu" "windows_server_2019" {
   ssh_wait_timeout     = "5h"
   use_default_display  = "true"
   vm_name              = "windows-server-2019"
-  vnc_bind_address     = "127.0.0.1"
+  vnc_bind_address     = "0.0.0.0"
   vnc_port_max         = "5900"
   vnc_port_min         = "5900"
 }
@@ -90,7 +90,8 @@ build {
     inline = [
       "parted -s target-qemu/* print free",
       "NEW_SIZE=$(parted -sm target-qemu/* unit b print free | grep free | awk -F ':' '{print $2}' | sort -rh | head -n 1)",
-      "qemu-img resize -f raw --shrink target-qemu/* $NEW_SIZE"
+      "qemu-img resize -f raw --shrink target-qemu/* $NEW_SIZE",
+      "qemu-img convert -f raw -O qcow2 target-qemu/windows-server-2019 target-qemu/windows-server-2019.qcow2"
     ]
   }
 }
