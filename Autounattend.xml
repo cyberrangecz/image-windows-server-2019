@@ -147,7 +147,7 @@
                 <SkipMachineOOBE>true</SkipMachineOOBE>
                 <SkipUserOOBE>true</SkipUserOOBE>
             </OOBE>
-      <TimeZone>UTC</TimeZone>
+      <TimeZone>Central European Standard Time</TimeZone>
       <UserAccounts>
         <LocalAccounts>
           <LocalAccount wcm:action="add">
