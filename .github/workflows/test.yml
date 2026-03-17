@@ -8,5 +8,5 @@ on:
 
 jobs:
   test:
-    uses: cyberrangecz/ci-images/.github/workflows/test.yml@master
+    uses: cyberrangecz/ci-images/.github/workflows/test.yml@vault-secrets
     secrets: inherit

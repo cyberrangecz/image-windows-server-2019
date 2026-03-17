@@ -5,7 +5,7 @@ on:
 
 jobs:
   release:
-    uses: cyberrangecz/ci-images/.github/workflows/release.yml@master
+    uses: cyberrangecz/ci-images/.github/workflows/release.yml@vault-secrets
     secrets: inherit
     with:
       release_to_s3: false
